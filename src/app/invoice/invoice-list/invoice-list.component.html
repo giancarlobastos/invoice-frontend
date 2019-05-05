@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col s12 m8">
+    <div class="card grey lighten-5">
+      <div class="card-content text-darken-4">
+        <span class="card-title">Invoices</span>
+        <table class="highlight">
+          <thead>
+            <tr>
+              <th>Invoice Number</th>
+              <th>Due Date</th>
+              <th>Description</th>
+              <th>Total Amount</th>
+              <th>Total Amount Paid</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let invoice of invoices$ | async">
+              <td>{{ invoice.invoiceNumber }}</td>
+              <td>{{ invoice.dueDate }}</td>
+              <td>{{ invoice.description }}</td>
+              <td>{{ invoice.totalAmount }}</td>
+              <td>{{ invoice.totalAmountPaid }}<span class="new badge green" data-badge-caption="Paid"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

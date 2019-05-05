@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col s12 m4">
+    <div class="card grey lighten-5">
+      <form #createInvoiceForm="ngForm" (ngSubmit)="onSubmit(createInvoiceForm)" class="card-content text-darken-4">
+        <span class="card-title">New Invoice</span>
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="e-mail" id="from_email" name="from" type="email" class="validate" ngModel>
+            <label for="from_email">From</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="e-mail" id="to_email" name="to" type="email" class="validate" ngModel>
+            <label for="from_email">To</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Description" id="description" name="description" type="text" class="validate" ngModel>
+            <label for="description">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="due_date" name="dueDate" type="date" class="validate" ngModel>
+            <label class="active" for="due_date">Due Date</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="Total Amount" id="total_amount" name="totalAmount" type="number" class="validate"
+              ngModel>
+            <label for="total_amount">Total Amount</label>
+          </div>
+        </div>
+        <div class="card-action">
+          <button type="submit" class="waves-effect waves-light btn col s6 offset-s6">Create</button>
+          <br>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
