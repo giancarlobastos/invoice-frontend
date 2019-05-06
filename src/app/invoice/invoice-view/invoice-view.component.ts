@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../invoice';
+import { InvoiceService } from '../invoice.service';
 
 @Component({
   selector: 'app-invoice-view',
@@ -8,20 +9,13 @@ import { Invoice } from '../invoice';
 })
 export class InvoiceViewComponent implements OnInit {
 
-  invoice = {
-    "invoiceNumber": 20,
-    "invoicePaymentAddress": "msrSmi5FgrpNP2MCoYBtFTX4T4w9684ZGb",
-    "from": "email@email.com",
-    "to": "email@email.com",
-    "dueDate": new Date("2019-05-28"),
-    "description": "test",
-    "totalAmount": 10,
-    "totalAmountPaid": 0
-  };
+  invoice: Invoice = {} as Invoice;
 
-  constructor() { }
+  constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit() {
+    this.invoiceService.invoiceEmitter.subscribe(invoice => this.invoice = invoice);
+    this.invoiceService.selectedInvoiceEmitter.subscribe(invoice => this.invoice = invoice);
   }
 
 }

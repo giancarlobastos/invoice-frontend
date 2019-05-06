@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { InvoiceService } from '../invoice.service';
 import { Invoice } from '../invoice';
@@ -11,12 +10,17 @@ import { Invoice } from '../invoice';
 })
 export class InvoiceListComponent implements OnInit {
 
-  invoices$: Observable<Invoice[]>;
+  invoices: Invoice[] = [];
+
 
   constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit() {
-    this.invoices$ = this.invoiceService.getInvoices();
+    this.invoiceService.getInvoices().subscribe(invoices => this.invoices = invoices);
+    this.invoiceService.invoiceEmitter.subscribe(invoice => this.invoices.unshift(invoice));
   }
 
+  onClick(invoice: Invoice) {
+    this.invoiceService.selectInvoice(invoice);
+  }
 }

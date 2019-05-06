@@ -15,12 +15,15 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let invoice of invoices$ | async">
+            <tr *ngFor="let invoice of invoices" (click)="onClick(invoice)">
               <td>{{ invoice.invoiceNumber }}</td>
               <td>{{ invoice.dueDate }}</td>
               <td>{{ invoice.description }}</td>
-              <td>{{ invoice.totalAmount }}</td>
-              <td>{{ invoice.totalAmountPaid }}<span class="new badge green" data-badge-caption="Paid"></span></td>
+              <td>{{ invoice.totalAmount | number:'1.0-8' }}</td>
+              <td>{{ invoice.totalAmountPaid | number:'1.0-8' }}
+                <span class="new badge red" data-badge-caption="Expired" *ngIf="invoice.status == 'EXPIRED'"></span>
+                <span class="new badge blue" data-badge-caption="Partially Paid" *ngIf="invoice.status == 'PARTIALLY_PAID'"></span>
+                <span class="new badge green" data-badge-caption="Paid" *ngIf="invoice.status == 'PAID'"></span></td>
             </tr>
           </tbody>
         </table>

@@ -17,4 +17,6 @@ export interface Invoice {
     totalAmountPaid: Number;
 
     totalBalance: Number;
+
+    status: string;
 }

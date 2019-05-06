@@ -1,47 +1,48 @@
 <div class="row">
-    <div class="col s12 m4">
-      <div class="card grey lighten-5">
-        <div class="card-content text-darken-4">
-          <span class="new badge green" data-badge-caption="Paid"></span>
-          <span class="card-title">Invoice # {{ invoice.invoiceNumber }}</span>
-          <div class="row">
-              <div class="col s12">
-                  <label>Payment Address</label>
-                  <p>{{ invoice.invoicePaymentAddress }}</p>
-              </div>
-            </div>
-            <div class="row">
-            <div class="col s6">
-              <label>From</label>
-              <p>{{ invoice.from }}</p>
-            </div>
-            <div class="col s6">
-                <label>To</label>
-                <p>{{ invoice.from }}</p>
-              </div>
+  <div class="col s12 m4">
+    <div class="card grey lighten-5">
+      <div class="card-content text-darken-4">
+        <span class="new badge red" data-badge-caption="Expired" *ngIf="invoice.status == 'EXPIRED'"></span>
+        <span class="new badge blue" data-badge-caption="Partially Paid" *ngIf="invoice.status == 'PARTIALLY_PAID'"></span>
+        <span class="new badge green" data-badge-caption="Paid" *ngIf="invoice.status == 'PAID'"></span>
+        <span class="card-title">Invoice # {{ invoice.invoiceNumber }}</span>
+        <div class="row">
+          <div class="col s12">
+            <label>Payment Address</label>
+            <p>{{ invoice.invoicePaymentAddress }}</p>
           </div>
-          <div class="row">
-            <div class="col s12">
-                <label>Description</label>
-                <p>{{ invoice.description }}</p>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <label>From</label>
+            <p>{{ invoice.from }}</p>
           </div>
-          <div class="row">
-            <div class="col s4">
-              <label>Due Date</label>
-              <p>{{ invoice.dueDate }}</p>
-            </div>
-            <div class="col s4">
-              <label>Total Amount</label>
-              <p>{{ invoice.totalAmount }}</p>
-            </div>
-            <div class="col s4">
-              <label>Total Amount Paid</label>
-              <p>{{ invoice.totalAmountPaid }}</p>
-            </div>
+          <div class="col s6">
+            <label>To</label>
+            <p>{{ invoice.from }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <label>Description</label>
+            <p>{{ invoice.description }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            <label>Due Date</label>
+            <p>{{ invoice.dueDate }}</p>
+          </div>
+          <div class="col s4">
+            <label>Total Amount</label>
+            <p>{{ invoice.totalAmount | number:'1.0-8' }}</p>
+          </div>
+          <div class="col s4">
+            <label>Total Amount Paid</label>
+            <p>{{ invoice.totalAmountPaid | number:'1.0-8' }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
