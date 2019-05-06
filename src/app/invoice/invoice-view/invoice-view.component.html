@@ -1,6 +1,9 @@
 <div class="row" *ngIf="invoice.invoicePaymentAddress != null">
   <div class="col s12 m4">
-    <div class="card grey lighten-5">
+    <div class="card horizontal grey lighten-5">
+        <div class="card-image">
+            <img src="https://lorempixel.com/100/190/nature/6">
+        </div>
       <div class="card-content text-darken-4">
         <span class="new badge red" data-badge-caption="Expired" *ngIf="invoice.status == 'EXPIRED'"></span>
         <span class="new badge blue" data-badge-caption="Partially Paid" *ngIf="invoice.status == 'PARTIALLY_PAID'"></span>
