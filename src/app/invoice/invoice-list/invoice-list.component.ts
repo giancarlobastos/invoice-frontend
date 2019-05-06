@@ -18,7 +18,7 @@ export class InvoiceListComponent implements OnInit {
   constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit() {
-    this.invoiceService.invoiceEmitter.subscribe(invoice => this.invoices.unshift(invoice));
+    this.invoiceService.invoiceEmitter.subscribe(invoice => this.invoices.push(invoice));
     this.loadInvoices();
     
     const source = interval(10000);
