@@ -15,6 +15,7 @@ export class InvoiceFormComponent implements OnInit {
 
   onSubmit(form) {
     this.invoiceService.createInvoice(JSON.stringify(form.form.value));
+    form.reset();
   }
 
 }

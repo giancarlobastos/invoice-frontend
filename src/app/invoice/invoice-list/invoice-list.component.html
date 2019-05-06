@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="invoices.length > 0">
   <div class="col s12 m8">
     <div class="card grey lighten-5">
       <div class="card-content text-darken-4">
@@ -17,7 +17,7 @@
           <tbody>
             <tr *ngFor="let invoice of invoices" (click)="onClick(invoice)">
               <td>{{ invoice.invoiceNumber }}</td>
-              <td>{{ invoice.dueDate }}</td>
+              <td>{{ invoice.dueDate | date:'MM / dd / yyyy' }}</td>
               <td>{{ invoice.description }}</td>
               <td>{{ invoice.totalAmount | number:'1.0-8' }}</td>
               <td>{{ invoice.totalAmountPaid | number:'1.0-8' }}
