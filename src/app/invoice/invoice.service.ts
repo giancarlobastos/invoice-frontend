@@ -9,8 +9,8 @@ import { Invoice } from './invoice';
 @Injectable()
 export class InvoiceService {
 
-  private readonly API = `${environment.API}/invoices`;
-
+  private readonly INVOICES_ENDPOINT = `${environment.API}/invoices`;
+  
   invoiceEmitter: EventEmitter<Invoice>;
   selectedInvoiceEmitter: EventEmitter<Invoice>;
 
@@ -26,13 +26,17 @@ export class InvoiceService {
   }
 
   createInvoice(invoice) {
-    return this.http.post(this.API, invoice, this.httpOptions).subscribe(response => this.invoiceEmitter.emit(response as Invoice));
+    return this.http.post(this.INVOICES_ENDPOINT, invoice, this.httpOptions).subscribe(response => this.invoiceEmitter.emit(response as Invoice));
+  }
+
+  getInvoice(invoice: Invoice) {
+    if(invoice.invoiceNumber != null) {
+      return this.http.get<Invoice>(`${this.INVOICES_ENDPOINT}/${invoice.invoiceNumber}`).subscribe(response => this.selectInvoice(response as Invoice));
+    }
   }
 
   getInvoices() {
-    return this.http.get<Invoice[]>(this.API).pipe(
-      tap(console.log)
-    );
+    return this.http.get<Invoice[]>(this.INVOICES_ENDPOINT);
   }
 
   selectInvoice(invoice: Invoice) {

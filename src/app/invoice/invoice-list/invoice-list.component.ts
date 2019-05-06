@@ -1,8 +1,9 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { interval, Subscription } from 'rxjs';
 
 import { InvoiceService } from '../invoice.service';
 import { Invoice } from '../invoice';
-import { interval, Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-invoice-list',
@@ -21,7 +22,7 @@ export class InvoiceListComponent implements OnInit {
     this.invoiceService.invoiceEmitter.subscribe(invoice => this.invoices.push(invoice));
     this.loadInvoices();
     
-    const source = interval(10000);
+    const source = interval(9000);
     this.subscription = source.subscribe(val => this.loadInvoices());
   }
 
